@@ -385,8 +385,9 @@
 
         .gallery-lane-head {
             display: flex;
-            align-items: flex-end;
+            align-items: flex-start;
             justify-content: space-between;
+            flex-wrap: wrap;
             gap: 12px;
             margin-bottom: 14px;
         }
@@ -418,33 +419,19 @@
         }
 
         .gallery-track {
-            display: flex;
-            gap: 14px;
-            overflow-x: auto;
-            padding-bottom: 6px;
-            scroll-snap-type: x proximity;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(109,76,65,0.35) transparent;
-        }
-
-        .gallery-track::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .gallery-track::-webkit-scrollbar-thumb {
-            background: rgba(109,76,65,0.35);
-            border-radius: 999px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
         }
 
         .gallery-card {
             position: relative;
-            flex: 0 0 min(72vw, 250px);
+            min-width: 0;
             border-radius: 18px;
             overflow: hidden;
             background: #dbc4a7;
             box-shadow: 0 10px 24px rgba(0,0,0,0.12);
-            scroll-snap-align: start;
-            aspect-ratio: 4 / 5;
+            aspect-ratio: 1 / 1.2;
         }
 
         .gallery-card img {
@@ -455,40 +442,8 @@
             transition: transform 0.35s ease;
         }
 
-        .gallery-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(15,26,16,0) 42%, rgba(15,26,16,0.82) 100%);
-        }
-
         .gallery-card:hover img {
             transform: scale(1.05);
-        }
-
-        .gallery-card figcaption {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1;
-            padding: 18px 16px 16px;
-            color: #fff;
-        }
-
-        .gallery-card-title {
-            display: block;
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 2px;
-        }
-
-        .gallery-card-sub {
-            display: block;
-            font-size: 0.78rem;
-            color: rgba(255,255,255,0.72);
         }
 
         /* ===== RAJASTHANI SPECIAL ===== */
@@ -859,7 +814,8 @@
             section { padding: 80px 40px; }
             .cats-grid, .raj-grid, .products-grid, .why-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
             .gallery-lane { padding: 20px; }
-            .gallery-card { flex-basis: 240px; }
+            .gallery-track { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+            .gallery-card { aspect-ratio: 1 / 1.08; }
         }
 
         @media (min-width: 900px) {
@@ -871,7 +827,8 @@
             .why-grid { grid-template-columns: repeat(4, 1fr); }
             .hero { padding: 120px 60px 80px; min-height: 90vh; }
             .hero h1 { max-width: 700px; }
-            .gallery-card { flex-basis: 250px; }
+            .gallery-track { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+            .gallery-card { aspect-ratio: 1 / 1; }
         }
     </style>
 </head>
@@ -959,43 +916,33 @@
             <div class="gallery-track">
                 <figure class="gallery-card">
                     <img src="images/gpt/vegetables/tamatar.webp" alt="Fresh tamatar tomatoes" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Tamatar</span><span class="gallery-card-sub">Fresh tomatoes</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/vegetables/aloo.webp" alt="Fresh aloo potatoes" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Aloo</span><span class="gallery-card-sub">Potatoes</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/vegetables/pyaz.webp" alt="Fresh pyaz onions" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Pyaz</span><span class="gallery-card-sub">Onions</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/vegetables/lauki.webp" alt="Fresh lauki bottle gourd" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Lauki</span><span class="gallery-card-sub">Bottle gourd</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/vegetables/gajar.webp" alt="Fresh gajar carrots" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Gajar</span><span class="gallery-card-sub">Carrots</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/vegetables/beans.webp" alt="Fresh green beans" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Beans</span><span class="gallery-card-sub">Green beans</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/vegetables/fali.webp" alt="Fresh fali beans" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Fali</span><span class="gallery-card-sub">Tender beans</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/vegetables/karela.webp" alt="Fresh karela bitter gourd" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Karela</span><span class="gallery-card-sub">Bitter gourd</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/vegetables/kheera.webp" alt="Fresh kheera cucumbers" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Kheera</span><span class="gallery-card-sub">Cucumber</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/vegetables/lahsun.webp" alt="Fresh lahsun garlic" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Lahsun</span><span class="gallery-card-sub">Garlic</span></figcaption>
                 </figure>
             </div>
         </article>
@@ -1011,27 +958,21 @@
             <div class="gallery-track">
                 <figure class="gallery-card">
                     <img src="images/gpt/fruits/aam.webp" alt="Fresh aam mangoes" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Aam</span><span class="gallery-card-sub">Mangoes</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/fruits/apple.webp" alt="Fresh apples" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Apple</span><span class="gallery-card-sub">Crisp apples</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/fruits/bor.webp" alt="Fresh bor jujube fruit" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Bor</span><span class="gallery-card-sub">Indian jujube</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/fruits/kela.webp" alt="Fresh kela bananas" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Kela</span><span class="gallery-card-sub">Bananas</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/fruits/papaya.webp" alt="Fresh papaya" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Papaya</span><span class="gallery-card-sub">Sweet and ripe</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/fruits/tarbuj.webp" alt="Fresh tarbuj watermelon" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Tarbuj</span><span class="gallery-card-sub">Watermelon</span></figcaption>
                 </figure>
             </div>
         </article>
@@ -1047,31 +988,24 @@
             <div class="gallery-track">
                 <figure class="gallery-card">
                     <img src="images/gpt/flowers/rose.webp" alt="Fresh roses" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Rose</span><span class="gallery-card-sub">Fresh cut roses</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/flowers/english-rose.webp" alt="English rose flowers" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">English Rose</span><span class="gallery-card-sub">Layered blooms</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/flowers/jasmine.webp" alt="Fresh jasmine flowers" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Jasmine</span><span class="gallery-card-sub">Fragrant flowers</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/flowers/lemon-flower.webp" alt="Fresh lemon flower arrangement" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Lemon Flower</span><span class="gallery-card-sub">Decorative bunch</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/flowers/marigold-basket.webp" alt="Basket of marigold flowers" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Marigold Basket</span><span class="gallery-card-sub">Festival ready</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/flowers/mix-basket.webp" alt="Basket of mixed flowers" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Mix Basket</span><span class="gallery-card-sub">Assorted flowers</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/flowers/white-flower.webp" alt="Fresh white flowers" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">White Flower</span><span class="gallery-card-sub">Pooja favourite</span></figcaption>
                 </figure>
             </div>
         </article>
@@ -1087,19 +1021,15 @@
             <div class="gallery-track">
                 <figure class="gallery-card">
                     <img src="images/gpt/rajasthani-special/ker.webp" alt="Rajasthani ker berries" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Ker</span><span class="gallery-card-sub">Desert berries</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/rajasthani-special/sangri.webp" alt="Rajasthani sangri beans" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Sangri</span><span class="gallery-card-sub">Traditional dried beans</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/rajasthani-special/ker-sangri.webp" alt="Rajasthani ker sangri mix" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Ker Sangri Mix</span><span class="gallery-card-sub">Classic combo</span></figcaption>
                 </figure>
                 <figure class="gallery-card">
                     <img src="images/gpt/rajasthani-special/gonda.webp" alt="Rajasthani gonda fruit" loading="lazy" decoding="async">
-                    <figcaption><span class="gallery-card-title">Gonda</span><span class="gallery-card-sub">Pickle favourite</span></figcaption>
                 </figure>
             </div>
         </article>
